@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Data.Common;
+using System.Data.Entity;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using EntityFramework.DynamicFilters;
 using EntityFramework.Extensions;
 using EntityFramework.Mapping;
 using EntityFramework.Reflection;
@@ -446,6 +448,15 @@ namespace EntityFramework.Batch
 
                 command.Parameters.Add(parameter);
             }
+
+            //by td
+            foreach (Match match in Regex.Matches(innerJoinSql, $"(?<=@){DynamicFilterConstants.PARAMETER_NAME_PREFIX}_\\d+"))
+            {
+                var parameter = command.CreateParameter();
+                parameter.ParameterName = match.Value;
+                command.Parameters.Add(parameter);
+            }
+            ((DbContext)null).SetSqlParameters(command);
 
             return innerJoinSql;
         }

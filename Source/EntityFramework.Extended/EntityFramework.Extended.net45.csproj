@@ -36,7 +36,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>..\EntityFramework.Extended.snk</AssemblyOriginatorKeyFile>
     <DefineConstants>NET45;$(DefineConstants)</DefineConstants>
     <OutputPath>bin\$(Configuration)\$(TargetFrameworkVersion)</OutputPath>
@@ -44,13 +44,11 @@
     <DocumentationFile>$(OutputPath)\EntityFramework.Extended.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\..\..\..\Lanyi.Fst\src\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\..\..\..\Lanyi.Fst\src\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -152,6 +150,12 @@
     </None>
     <None Include="EntityFramework.Extended.nuspec" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\EntityFramework.DynamicFilters\src\EntityFramework.DynamicFilters\EntityFramework.DynamicFilters.csproj">
+      <Project>{56e36ad1-e675-42f0-96cb-7f475e05e491}</Project>
+      <Name>EntityFramework.DynamicFilters</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
